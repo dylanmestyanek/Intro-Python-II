@@ -38,6 +38,12 @@ room['treasure'].s_to = room['narrow']
 # Main
 #
 
+def move_character(new_destination):
+    if new_destination != None:
+        player_one.current_room = new_destination
+    else:
+        print('\n ———————————————————————————————————————————————————\n|  Woops, looks like you can\'t head that direction. |\n|           Try taking a different path!            |\n ———————————————————————————————————————————————————\n                         ||\n                         ||\n                         ||\n')
+        
 # Make a new player object that is currently in the 'outside' room.
 player_one = Player(room['outside'])
 
@@ -54,9 +60,14 @@ while True:
     player_cmd = input("\nWhere are you headed next?\n[1] North - [2] East - [3] South - [4] West - [q] Quit\n")
 
     if player_cmd == '1':
-        player_one.current_room = room[player_one.current_room.name].n_to
-
-    if player_cmd == 'q':
+        move_character(player_one.current_room.n_to)
+    elif player_cmd == '2':
+        move_character(player_one.current_room.e_to)
+    elif player_cmd == '3':
+        move_character(player_one.current_room.s_to)
+    elif player_cmd == '4':
+        move_character(player_one.current_room.w_to)
+    elif player_cmd == 'q':
         print("\nSafe travels!\nReturn when your strong enough to continue your adventure!\n")
         exit()
 
@@ -64,3 +75,5 @@ while True:
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
