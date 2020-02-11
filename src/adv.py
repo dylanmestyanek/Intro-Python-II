@@ -54,18 +54,16 @@ player_one = Player(room['outside'])
 # * Waits for user input and decides what to do.
 print('\nWelcome to your adventure!\nWhatever you do, be careful.. and don\'t get lost!\n')
 while True:
-    print(f'=== Current Location ===\n{player_one}')
-    # print(f'\n{room[player_one.current_room]}')
-    # print(f'WHAT I NEED {room[player_one.current_room].n_to}')
-    player_cmd = input("\nWhere are you headed next?\n[1] North - [2] East - [3] South - [4] West - [q] Quit\n")
+    print(f'\n=== Current Location ===\n{player_one}')
+    player_cmd = input("\nWhere are you headed next?\n[n] North - [e] East - [s] South - [w] West - [q] Quit\n")
 
-    if player_cmd == '1':
+    if player_cmd == 'n':
         move_character(player_one.current_room.n_to)
-    elif player_cmd == '2':
+    elif player_cmd == 'e':
         move_character(player_one.current_room.e_to)
-    elif player_cmd == '3':
+    elif player_cmd == 's':
         move_character(player_one.current_room.s_to)
-    elif player_cmd == '4':
+    elif player_cmd == 'w':
         move_character(player_one.current_room.w_to)
     elif player_cmd == 'q':
         print("\nSafe travels!\nReturn when your strong enough to continue your adventure!\n")
