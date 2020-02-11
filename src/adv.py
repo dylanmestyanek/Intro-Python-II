@@ -34,9 +34,7 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-#
-# Main
-#
+directions = ['n', 's', 'e', 'w', 'q']
 
 def move_character(new_destination):
     if new_destination != None:
@@ -45,29 +43,31 @@ def move_character(new_destination):
         print('\n ———————————————————————————————————————————————————\n|  Woops, looks like you can\'t head that direction. |\n|           Try taking a different path!            |\n ———————————————————————————————————————————————————\n                         ||\n                         ||\n                         ||\n')
         
 # Make a new player object that is currently in the 'outside' room.
-player_one = Player(room['outside'])
+player_one = Player('Big Daddy', room['outside'])
 
 # Write a loop that:
 #
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
-print('\nWelcome to your adventure!\nWhatever you do, be careful.. and don\'t get lost!\n')
+print('\nWelcome to your adventure!\nWhatever you do, be careful.. and don\'t get lost!')
 while True:
     print(f'\n=== Current Location ===\n{player_one}')
     player_cmd = input("\nWhere are you headed next?\n[n] North - [e] East - [s] South - [w] West - [q] Quit\n")
-
-    if player_cmd == 'n':
-        move_character(player_one.current_room.n_to)
-    elif player_cmd == 'e':
-        move_character(player_one.current_room.e_to)
-    elif player_cmd == 's':
-        move_character(player_one.current_room.s_to)
-    elif player_cmd == 'w':
-        move_character(player_one.current_room.w_to)
-    elif player_cmd == 'q':
-        print("\nSafe travels!\nReturn when your strong enough to continue your adventure!\n")
-        exit()
+    if player_cmd in directions:
+        if player_cmd == 'n':
+            move_character(player_one.current_room.n_to)
+        elif player_cmd == 'e':
+            move_character(player_one.current_room.e_to)
+        elif player_cmd == 's':
+            move_character(player_one.current_room.s_to)
+        elif player_cmd == 'w':
+            move_character(player_one.current_room.w_to)
+        elif player_cmd == 'q':
+            print("\nSafe travels!\nReturn when your strong enough to continue your adventure!\n")
+            exit()
+    else:
+        print('\n>>>>> That is not a valid input. Try again! <<<<<')
 
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
