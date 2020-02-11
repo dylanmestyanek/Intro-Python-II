@@ -4,21 +4,21 @@ from player import Player
 # Declare all the rooms
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", []),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", ["Bronze coins", "a rusted necklace", "a flowerpot"]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""", ["Rope", "used pickaxe", "an old shoe"]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""", ["Dusty bones", "blunt shovel", "some silver coins"]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", []),
 }
 
 
@@ -52,6 +52,8 @@ print('\nWelcome to your adventure!\nWhatever you do, be careful.. and don\'t ge
 while True:
     print(f'\n=== Current Location ===\n{player_one}')
     player_cmd = input("\nWhere are you headed next?\n[n] North - [e] East - [s] South - [w] West - [q] Quit\n")
+
+    print(player_cmd.split(" "))
 
     if player_cmd in commands:
         if player_cmd == 'n':
