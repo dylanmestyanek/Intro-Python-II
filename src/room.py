@@ -9,10 +9,18 @@ class Room:
         self.s_to = None
         self.e_to = None
         self.w_to = None
-        
-    
+        self.items = []
+
     def __str__(self):
-        return f'Room Name: {self.name} \nDescription: {self.description}'
+        s = f'Room Name: {self.name} \nDescription: {self.description} \nItems in room: '
+
+        if len(self.items) > 0:
+            for i in self.items:
+                s += i
+        else:
+            s += "None"
+
+        return s
 
     def __repr__(self):
         return f'Room({repr(self.name)}, {repr(self.description)})'
