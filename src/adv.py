@@ -46,9 +46,14 @@ player_one = Player("outside")
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
-print(player_one)
-room_to_move = input("Select direction: [1] North [2] East [3] South [4] West       [q] Quit")
-#
+while True:
+    print(room[player_one.current_room])
+    player_cmd = input("\nWhere are you headed next? [1] North, [2] East, [3] South, [4] West, or [q] Quit\n")
+
+    if player_cmd == 'q':
+        print("\n~~> Catch ya later! <~~\n")
+        exit()
+
 # If the user enters a cardinal direction, attempt to move to the room there.
 # Print an error message if the movement isn't allowed.
 #
