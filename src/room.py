@@ -16,10 +16,7 @@ class Room:
 
         if len(self.items) > 0:
             for i in self.items:
-                if  self.items.index(i) == (len(self.items) - 1):
-                    s += f'and {i}.'
-                else:
-                    s += f'{i}, '
+                    s += f' {i} '
         else:
             s += "None"
 

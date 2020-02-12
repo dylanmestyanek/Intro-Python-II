@@ -8,3 +8,6 @@ class Item:
     
     def __repr__(self):
         return f'Item({repr(self.name)}, {repr(self.description)})'
+
+    def on_take(self, item):
+        return f'\n Woohoo! You have picked up {item} and added it to your inventory!\n'

@@ -7,14 +7,14 @@ room = {
                      "North of you, the cave mount beckons", []),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east.""", ["Bronze coins", "a rusted necklace", "a flowerpot"]),
+passages run north and east.""", ["coins", "necklace", "flowerpot"]),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", ["Rope", "used pickaxe", "an old shoe"]),
+the distance, but there is no way across the chasm.""", ["rope", "pickaxe", "shoe"]),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", ["Dusty bones", "blunt shovel", "some silver coins"]),
+to north. The smell of gold permeates the air.""", ["bones", "shovel", "gems"]),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
@@ -32,7 +32,7 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-commands = ['n', 's', 'e', 'w', 'q']
+commands = ['n', 's', 'e', 'w', 'q', 'take', 'get']
 
 def move_player(new_destination):
     if new_destination != None:
@@ -50,21 +50,28 @@ player_one = Player('Big Daddy', room['outside'])
 # * Waits for user input and decides what to do.
 print('\nWelcome to your adventure!\nWhatever you do, be careful.. and don\'t get lost!')
 while True:
-    print(f'\n=== Current Location ===\n{player_one}')
-    player_cmd = input("\nWhere are you headed next?\n[n] North - [e] East - [s] South - [w] West - [q] Quit\n")
+    print(f'\n========================\n>>> CURRENT LOCATION <<<\n========================\n{player_one}')
+    player_cmd = input("\n===> Where are you headed next?\n===> [n] North - [e] East - [s] South - [w] West - [q] Quit\n")
 
-    print(player_cmd.split(" "))
+    player_cmd = player_cmd.split(" ")
 
-    if player_cmd in commands:
-        if player_cmd == 'n':
+    if player_cmd[0] in commands:
+        if player_cmd[0] == 'n':
             move_player(player_one.current_room.n_to)
-        elif player_cmd == 'e':
+        elif player_cmd[0] == 'e':
             move_player(player_one.current_room.e_to)
-        elif player_cmd == 's':
+        elif player_cmd[0] == 's':
             move_player(player_one.current_room.s_to)
-        elif player_cmd == 'w':
+        elif player_cmd[0] == 'w':
             move_player(player_one.current_room.w_to)
-        elif player_cmd == 'q':
+        elif player_cmd[0] == 'take' or player_cmd[0] == 'get' and len(player_cmd) == 2:
+            if player_cmd[1] in player_one.current_room.items:
+                player_one.items.append(player_cmd[1])
+                player_one.current_room.items.remove(player_cmd[1])
+                
+            else:
+                print('\n\n► ► ►  Looks like that item isn\'t in this room! ◄ ◄ ◄ ')
+        elif player_cmd[0] == 'q':
             print("\nSafe travels!\nReturn when your strong enough to continue your adventure!\n")
             exit()
     else:
