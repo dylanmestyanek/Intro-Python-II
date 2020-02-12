@@ -72,7 +72,7 @@ while True:
             else:
                 print('\n\n► ► ►  Looks like that item isn\'t in this room! ◄ ◄ ◄ ')
         elif player_cmd[0] == 'q':
-            print("\nSafe travels!\nReturn when your strong enough to continue your adventure!\n")
+            print("\nSafe travels!\nReturn when you're strong enough to continue your adventure!\n")
             exit()
     else:
         print('\n>>>>> That is not a valid input. Try again! <<<<<')
