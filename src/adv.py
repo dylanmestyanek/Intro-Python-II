@@ -33,7 +33,7 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-player = Player('Big Daddy', room['outside'])
+player = Player('Big Boy', room['outside'])
 
 print('\nWelcome to your adventure!\nWhatever you do, be careful.. and don\'t get lost!')
 print(f'\n========================\n>>> CURRENT LOCATION <<<\n========================\n{player}')

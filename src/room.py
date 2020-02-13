@@ -12,7 +12,7 @@ class Room:
         self.items = items
 
     def __str__(self):
-        s = f'Room Name: {self.name} \nDescription: {self.description} \n\n========================\n>>> ITEMS IN ROOM <<<\n========================'
+        s = f'Room Name: {self.name} \nDescription: {self.description} \n\n========================\n>>>  ITEMS IN ROOM  <<<\n========================'
 
         if len(self.items) > 0:
             for i in self.items:

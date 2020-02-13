@@ -33,14 +33,14 @@ class Player:
             # print(f'\n========================\n>>> CURRENT LOCATION <<<\n========================\n{current_room}')
 
     def view_inventory(self):
+        inventory = f'\n========================\n>>>  YOUR INVENTORY  <<<\n========================\n'
         if self.items:
-            inventory = f'\n========================\n>>>  YOUR INVENTORY  <<<\n========================\n'
             for i in self.items:
                 inventory += f'{i.name} '
-
-            return inventory
         else:
-            return '\n========================\n>>>  YOUR INVENTORY  <<<\n========================\nYour inventory is empty!'
+            inventory += 'Your inventory is empty!'
+
+        return inventory
 
     def view_location(self):
         return f'\n========================\n>>> CURRENT LOCATION <<<\n========================\n{self}'
