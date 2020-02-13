@@ -10,7 +10,11 @@ class Player:
     def __str__(self):
         return f'Player: {self.name}\n{self.current_room}'
 
-    def __repr__(self):
-        return f'Player({repr(self.name)}, {repr(self.current_room)})'
+    def move_player(self, new_destination):
+        if new_destination != None:
+            self.current_room = new_destination
+            print(f'\n========================\n>>> CURRENT LOCATION <<<\n========================\n{self}')
+        else:
+            print('\n ———————————————————————————————————————————————————\n|  Woops, looks like you can\'t head that direction. |\n|           Try taking a different path!            |\n ———————————————————————————————————————————————————\n                         ||\n                         ||\n                         ||\n') 
 
 

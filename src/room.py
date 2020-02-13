@@ -12,16 +12,15 @@ class Room:
         self.items = items
 
     def __str__(self):
-        s = f'Room Name: {self.name} \nDescription: {self.description} \nItems in room: '
+        s = f'Room Name: {self.name} \nDescription: {self.description} \n\n========================\n>>> ITEMS IN ROOM <<<\n========================'
 
         if len(self.items) > 0:
             for i in self.items:
-                    s += f' {i} '
+                    s += f' {self.items[i]} '
         else:
-            s += "None"
+            s += "\nNone"
 
         return s
 
-    def __repr__(self):
-        return f'Room({repr(self.name)}, {repr(self.description)})'
+
     
