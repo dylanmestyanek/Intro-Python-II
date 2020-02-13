@@ -12,7 +12,7 @@ class Player:
 
     def move_player(self, direction):
         destination = getattr(self.current_room, f'{direction}_to')
-        if direction != None:
+        if destination != None:
             self.current_room = destination
             print(f'\n========================\n>>> CURRENT LOCATION <<<\n========================\n{self}')
         else:
@@ -30,7 +30,6 @@ class Player:
             del current_room.items[item]
         else:
             print('\n\n► ► ►  Looks like that item isn\'t in this room! ◄ ◄ ◄ ')
-            # print(f'\n========================\n>>> CURRENT LOCATION <<<\n========================\n{current_room}')
 
     def view_inventory(self):
         inventory = f'\n========================\n>>>  YOUR INVENTORY  <<<\n========================\n'

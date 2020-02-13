@@ -7,4 +7,4 @@ class Item:
         return f'\n>> {self.name}: {self.description}'
 
     def take_item(self):
-        return f'\n<><><> Woohoo! You have picked up {self.name} and added it to your inventory! <><><>'
+        return f'\n---------------------------------------------------------------------------\n Woohoo! You have picked up {self.name} and added it to your inventory!\n---------------------------------------------------------------------------'
