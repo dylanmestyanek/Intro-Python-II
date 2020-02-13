@@ -12,10 +12,10 @@ passages run north and east.""", {'necklace': items['necklace'], 'coins': items[
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm.""", ["rope", "pickaxe", "shoe"]),
+the distance, but there is no way across the chasm.""", {'rope': items['rope'], 'pickaxe': items['pickaxe'], 'shoe': items['shoe']}),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air.""", ["bones", "shovel", "gems"]),
+to north. The smell of gold permeates the air.""", {'bones': items['bones'], 'shovel': items['shovel'], 'gems': items['gems']}),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
@@ -33,41 +33,24 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-commands = ['n', 's', 'e', 'w', 'q', 'take', 'i']
-        
-player_one = Player('Big Daddy', room['outside'])
+player = Player('Big Daddy', room['outside'])
 
 print('\nWelcome to your adventure!\nWhatever you do, be careful.. and don\'t get lost!')
-print(f'\n========================\n>>> CURRENT LOCATION <<<\n========================\n{player_one}')
+print(f'\n========================\n>>> CURRENT LOCATION <<<\n========================\n{player}')
 while True:
-    player_cmd = input("\n===> Where are you headed next?\n===> [n] North - [e] East - [s] South - [w] West - [i] Inventory - [take *item name*] Pick Up Item - [q] Quit\n")
+    cmd = input("\n===> Where are you headed next?\n===> [n] North - [e] East - [s] South - [w] West - [i] Inventory - [p] Pick Up Item - [l] Location - [q] Quit\n").split(" ")
 
-    player_cmd = player_cmd.split(" ")
-
-    if player_cmd[0] in commands:
-        if player_cmd[0] == 'n':
-            player_one.move_player(player_one.current_room.n_to)
-        elif player_cmd[0] == 'e':
-            player_one.move_player(player_one.current_room.e_to)
-        elif player_cmd[0] == 's':
-            player_one.move_player(player_one.current_room.s_to)
-        elif player_cmd[0] == 'w':
-            player_one.move_player(player_one.current_room.w_to)
-        elif player_cmd[0] == 'take' and len(player_cmd) == 2:
-            print(player_cmd[1] in player_one.current_room.items)
-            if player_cmd[1] in player_one.current_room.items:
-
-                player_one.items.append(player_one.current_room.items[player_cmd[1]].name)
-                del player_one.current_room.items[player_cmd[1]]
-                print(f'\n========================\n>>> CURRENT LOCATION <<<\n========================\n{player_one.current_room}')
-            else:
-                print('\n\n► ► ►  Looks like that item isn\'t in this room! ◄ ◄ ◄ ')
-                print(f'\n========================\n>>> CURRENT LOCATION <<<\n========================\n{player_one.current_room}')
-        elif player_cmd[0] == 'q':
-            print("\nSafe travels!\nReturn when you're strong enough to continue your adventure!\n")
-            exit()
-        elif player_cmd[0] == 'i':
-            print(f'\n========================\n>>>  YOUR INVENTORY  <<<\n========================\n{player_one.items}')
+    if cmd[0] in ['n', 's', 'e', 'w']:
+        player.move_player(cmd[0])
+    elif cmd[0] == 'p':
+        player.pickup_item(player.current_room, cmd)
+    elif cmd[0] == 'i':
+        print(player.view_inventory())
+    elif cmd[0] == 'l':
+        print(player.view_location())
+    elif cmd[0] == 'q':
+        print("\nSafe travels!\nReturn when you're strong enough to continue your adventure!\n")
+        exit()
     else:
         print('\n>>>>> That is not a valid input. Try again! <<<<<')
 
