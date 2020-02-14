@@ -43,7 +43,9 @@ while True:
     if cmd[0] in ['n', 's', 'e', 'w']:
         player.move_player(cmd[0])
     elif cmd[0] == 'p':
-        player.pickup_item(player.current_room, cmd)
+        player.pickup_item(player.current_room, cmd, 'pickup')
+    elif cmd[0] == 'd':
+        player.drop_item(player.current_room, cmd, 'drop')
     elif cmd[0] == 'i':
         print(player.view_inventory())
     elif cmd[0] == 'l':

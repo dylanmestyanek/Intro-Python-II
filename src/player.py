@@ -18,9 +18,9 @@ class Player:
         else:
             print('\n ———————————————————————————————————————————————————\n|  Woops, looks like you can\'t head that direction. |\n|           Try taking a different path!            |\n ———————————————————————————————————————————————————\n                         ||\n                         ||\n                         ||\n') 
     
-    def pickup_item(self, current_room, cmd):
+    def pickup_item(self, current_room, cmd, action):
         if len(cmd) < 2:
-            return print('\nWoops! Invalid command. When attempting to pickup an item type: [take *item name*]\n')
+            return print(f'\nWoops! Invalid command. When attempting to {action} an item type: [{action[0]} *item name*]\n')
 
         item = cmd[1]
 
@@ -30,6 +30,19 @@ class Player:
             del current_room.items[item]
         else:
             print('\n\n► ► ►  Looks like that item isn\'t in this room! ◄ ◄ ◄ ')
+
+    def drop_item(self, current_room, cmd, action):
+        if len(cmd) < 2:
+            return print(f'\nWoops! Invalid command. When attempting to {action} an item type: [{action[0]} *item name*]\n')
+
+        item = cmd[1]
+        print(item, self.items)
+        if item in self.items:
+            current_room.items[item].append(item)
+            self.items.remove(item)
+            # print(current_room.items[item].take_item())
+        else:
+            print('\n\n► ► ►  Looks like that item isn\'t in your inventory! ◄ ◄ ◄ ')
 
     def view_inventory(self):
         inventory = f'\n========================\n>>>  YOUR INVENTORY  <<<\n========================\n'
