@@ -5,7 +5,7 @@ class Player:
     def __init__(self, name, current_room):
         self.name = name
         self.current_room = current_room
-        self.items = []
+        self.items = {}
 
     def __str__(self):
         return f'Player: {self.name}\n{self.current_room}'
@@ -25,7 +25,7 @@ class Player:
         item = cmd[1]
 
         if item in current_room.items:
-            self.items.append(current_room.items[item])
+            self.items[item] = current_room.items[item]
             print(current_room.items[item].take_item())
             del current_room.items[item]
         else:
@@ -36,11 +36,10 @@ class Player:
             return print(f'\nWoops! Invalid command. When attempting to {action} an item type: [{action[0]} *item name*]\n')
 
         item = cmd[1]
-        print(item, self.items)
         if item in self.items:
-            current_room.items[item].append(item)
-            self.items.remove(item)
-            # print(current_room.items[item].take_item())
+            current_room.items[item] = self.items[item]
+            print(current_room.items[item].drop_item())
+            del self.items[item]
         else:
             print('\n\n► ► ►  Looks like that item isn\'t in your inventory! ◄ ◄ ◄ ')
 
@@ -48,10 +47,9 @@ class Player:
         inventory = f'\n========================\n>>>  YOUR INVENTORY  <<<\n========================\n'
         if self.items:
             for i in self.items:
-                inventory += f'{i.name} '
+                inventory += f' [{i}] '
         else:
             inventory += 'Your inventory is empty!'
-
         return inventory
 
     def view_location(self):

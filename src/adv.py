@@ -5,7 +5,7 @@ from items_inventory import items
 # Declare all the rooms
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons", []),
+                     "North of you, the cave mount beckons"),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
 passages run north and east.""", {'necklace': items['necklace'], 'coins': items['coins'], 'flowerpot': items['flowerpot']}),
@@ -19,7 +19,7 @@ to north. The smell of gold permeates the air.""", {'bones': items['bones'], 'sh
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south.""", []),
+earlier adventurers. The only exit is to the south."""),
 }
 
 

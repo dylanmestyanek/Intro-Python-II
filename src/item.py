@@ -8,3 +8,6 @@ class Item:
 
     def take_item(self):
         return f'\n---------------------------------------------------------------------------\n Woohoo! You have picked up {self.name} and added it to your inventory!\n---------------------------------------------------------------------------'
+    
+    def drop_item(self):
+        return f'\n---------------------------------------------------------------------------\n You have dropped {self.name} and left it in the room.\n---------------------------------------------------------------------------'
